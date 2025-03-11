@@ -6,8 +6,18 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import MealDetailScreen from './screens/MealDetailScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import FavoritesScreen from './screens/FavoritesSceen'
 
 const Stack =  createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+function drawerNavigator(){
+  return <Drawer.Navigator>
+    <Drawer.Screen  name="Categories" component={CategoriesScreen}></Drawer.Screen>
+    <Drawer.Screen  name="Favorites" component={FavoritesScreen}></Drawer.Screen>
+    
+  </Drawer.Navigator>
+}
 export default function App() {
 
   return (
@@ -16,11 +26,11 @@ export default function App() {
 
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
-                  title: 'All Categories',
-                  headerStyle: {backgroundColor:'red'}
+                 // title: 'All Categories',
+                  headerStyle: {backgroundColor:'pink'}
                 }}>
                 <Stack.Screen name="MealsContainer" 
-                component={CategoriesScreen}      
+                component={drawerNavigator}      
                 />
 
                 <Stack.Screen name="MealsOverview" component={MealsOverviewScreen}/>
